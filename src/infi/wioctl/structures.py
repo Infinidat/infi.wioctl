@@ -16,9 +16,6 @@ ULONG64 = ULInt64
 WCHAR = ULInt16
 PARTITION_STYLE = ULInt32
 
-class STORAGE_DEVICE_NUMBER(Struct):
-    _fields_ = [DEVICE_TYPE("DeviceType"), DWORD("DeviceNumber"), DWORD("PartitionNumber")]
-
 class LARGE_INTEGER(Struct):
     _fields_ = [ULInt64("QuadPart"), ] if is_64bit() else [DWORD("LowPart"), DWORD("HighPart")]
 
