@@ -34,5 +34,5 @@ class DeviceIoControl(object):
 
     def ioctl(self, control_code, in_buffer, in_buffer_size, out_buffer, out_buffer_size):
         with self.open_handle() as handle:
-            return ioctl(control_code, in_buffer, in_buffer_size, out_buffer, out_buffer_size)
+            return ioctl(handle, control_code, in_buffer, in_buffer_size, out_buffer, out_buffer_size)
 
