@@ -33,6 +33,6 @@ class DeviceIoControl(object):
             yield handle
 
     def ioctl(self, control_code, in_buffer, in_buffer_size, out_buffer, out_buffer_size):
-        with self.open_handle(self.device_path) as handle:
+        with self.open_handle() as handle:
             return ioctl(control_code, in_buffer, in_buffer_size, out_buffer, out_buffer_size)
 
