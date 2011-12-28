@@ -14,7 +14,6 @@ UCHAR = BYTE
 BOOLEAN = BYTE
 ULONG64 = ULInt64
 WCHAR = ULInt16
-PARTITION_STYLE = ULInt32
 
 class LARGE_INTEGER(Struct):
     _fields_ = [ULInt64("QuadPart"), ] if is_64bit() else [DWORD("LowPart"), DWORD("HighPart")]
