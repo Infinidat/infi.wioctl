@@ -27,6 +27,11 @@ class DeviceIoControl(object):
         super(DeviceIoControl, self).__init__()
         self.device_path = device_path
 
+    @contextmanager
+    def open_handle(self):
+        with open_handle(self.device_path) as handle:
+            yield handle
+
     def ioctl(self, control_code, in_buffer, in_buffer_size, out_buffer, out_buffer_size):
         with self.open_handle(self.device_path) as handle:
             return ioctl(control_code, in_buffer, in_buffer_size, out_buffer, out_buffer_size)
