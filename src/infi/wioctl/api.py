@@ -1,5 +1,6 @@
 
-from infi.crap import WrappedFunction, IN, IN_OUT
+from infi.exceptools import InfiException
+from infi.cwrap import WrappedFunction, IN, IN_OUT
 from ctypes import c_void_p, c_ulong
 
 HANDLE = c_void_p
