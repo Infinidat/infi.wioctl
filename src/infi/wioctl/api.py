@@ -2,37 +2,31 @@
 from infi.exceptools import InfiException
 from infi.cwrap import WrappedFunction, IN, IN_OUT
 from ctypes import c_void_p, c_ulong
+from .errors import WindowsException, InvalidHandle
 
 HANDLE = c_void_p
 DWORD = c_ulong
 BOOL = c_ulong
-
-class WindowsException(Exception):
-    def __init__(self, errno):
-        from ctypes import FormatError
-        self.winerror = errno
-        self.strerror = FormatError(errno)
-
-    def __repr__(self):
-        return "%s, %s" % (self.winerror, self.strerror)
-
-    def __str__(self):
-        return self.__repr__()
 
 def errcheck_invalid_handle():
     from .constants import INVALID_HANDLE_VALUE
     from ctypes import GetLastError
     def errcheck(result, func, args):
         if result == INVALID_HANDLE_VALUE:
-            raise WindowsException(GetLastError())
+            last_error = GetLastError()
+            raise InvalidHandle(last_error)
         return result
     return errcheck
 
 def errcheck_bool():
     from ctypes import GetLastError
+    from .constants import ERROR_INVALID_HANDLE
     def errcheck(result, func, args):
         if result == 0:
-            raise WindowsException(GetLastError())
+            last_error = GetLastError()
+            if last_error == ERROR_INVALID_HANDLE:
+                raise InvalidHandle(last_error)
+            raise WindowsException(last_error)
         return result
     return errcheck
 
