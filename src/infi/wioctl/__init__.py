@@ -1,6 +1,6 @@
 
 from contextlib import contextmanager
-from . import constants, structures, api
+from . import errors, constants, structures, api
 import ctypes
 
 @contextmanager
