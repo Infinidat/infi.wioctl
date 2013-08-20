@@ -21,7 +21,7 @@ def open_handle(device_path, open_generic=False, open_shared=True):
 def ioctl(handle, control_code, in_buffer, in_buffer_size, out_buffer, out_buffer_size):
     bytes_returned = ctypes.c_ulong()
     api.DeviceIoControl(handle, control_code, in_buffer, in_buffer_size, out_buffer, out_buffer_size,
-                        ctypes.byref(bytes_returned), 0)
+                        ctypes.byref(bytes_returned), None)
     return bytes_returned.value
 
 class DeviceIoControl(object):
