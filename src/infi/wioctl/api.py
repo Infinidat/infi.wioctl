@@ -12,7 +12,7 @@ def errcheck_invalid_handle():
     from .constants import INVALID_HANDLE_VALUE
     from ctypes import GetLastError
     def errcheck(result, func, args):
-        if result == INVALID_HANDLE_VALUE:
+        if result == c_void_p(INVALID_HANDLE_VALUE).value:
             last_error = GetLastError()
             raise InvalidHandle(last_error)
         return result
