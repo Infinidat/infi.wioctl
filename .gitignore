@@ -40,3 +40,4 @@ src/infi/hello/__version__.py
 src/infi/wioctl/__version__.py
 bootstrap.py
 .cache
+eggs
