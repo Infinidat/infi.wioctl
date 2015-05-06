@@ -5,8 +5,8 @@ import ctypes
 
 @contextmanager
 def open_handle(device_path, open_generic=False, open_shared=True):
-    from constants import GENERIC_READ, GENERIC_WRITE, OPEN_EXISTING
-    from constants import FILE_SHARE_READ, FILE_SHARE_WRITE, OPEN_EXISTING
+    from .constants import GENERIC_READ, GENERIC_WRITE, OPEN_EXISTING
+    from .constants import FILE_SHARE_READ, FILE_SHARE_WRITE, OPEN_EXISTING
     handle = None
     try:
         handle = api.CreateFileW(ctypes.create_unicode_buffer(device_path),
