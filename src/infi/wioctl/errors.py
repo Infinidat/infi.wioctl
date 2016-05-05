@@ -1,8 +1,5 @@
 
-from infi.exceptools import chain, InfiException
-from infi.pyutils.decorators import wraps
-
-class IoctlException(InfiException):
+class IoctlException(Exception):
     pass
 
 class WindowsException(IoctlException):
