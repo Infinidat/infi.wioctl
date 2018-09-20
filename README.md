@@ -11,7 +11,7 @@ Here's an example on how to use this module:
 ```python
 from infi.wioctl.constants import IOCTL_SCSI_GET_ADDRESS, ERROR_ACCESS_DENIED
 from infi.wioctl import DeviceIoControl
-from infi.wioctl.errors import Windows
+from infi.wioctl.errors import WindowsException
 from ctypes import c_buffer
 from logging import getLogger
 
@@ -21,7 +21,7 @@ out_buffer = c_buffer('\x00'*out_buffer_size, out_buffer_size)
 device = DeviceIoControl(r"\\.\PHYSICALDRIVE0")
 try:
     _ = device.ioctl(IOCTL_SCSI_GET_ADDRESS, 0, 0, out_buffer, out_buffer_size)
-except WindowsException, exception:
+except WindowsException:
     logger.exception("IOCTL failed")
     raise
 ```
