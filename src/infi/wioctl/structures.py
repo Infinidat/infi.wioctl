@@ -24,4 +24,4 @@ class GUID(Struct):
     def __eq__(self, other):
         if not isinstance(other, GUID):
             return False
-        return all(getattr(self, 'Data%d' % i) == getattr(other, 'Data%d' % i) for i in range(1, 5))
+        return all(field.get_value(self) == field.get_value(other) for field in GUID._fields_)
